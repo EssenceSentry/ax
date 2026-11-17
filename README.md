@@ -2,6 +2,8 @@
 
 Start a command with ax, close the terminal, then come back to its output and standard input. A local daemon owns the process from the start. The same CLI can find the Claude or Codex conversation where you planned the work.
 
+**[Watch ax reattach from its Mac widget](docs/reattach.md)**. One recorded job survives the launch terminal closing and streams the remaining batches in a new terminal.
+
 **Try detaching a command.** After [installing ax](#install), run this small example:
 
 ```sh
@@ -18,9 +20,11 @@ Requirements: Python 3.12+, `uv`, and installed, authenticated Claude/Codex CLIs
 for the providers you use. ax uses Unix sockets and PTYs; the current validation
 was performed on macOS. `zstandard` is the only Python runtime dependency.
 
-From this checkout:
+Clone the workbench and install it:
 
 ```sh
+git clone https://github.com/EssenceSentry/ax.git
+cd ax
 python3 scripts/install.py
 ax --version
 ax daemon status
