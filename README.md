@@ -1,21 +1,25 @@
+![ax — Keep the work running. Pick up where you left off.](.github/assets/banner.svg)
+
 # ax
 
 [![Quality](https://github.com/EssenceSentry/ax/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/EssenceSentry/ax/actions/workflows/quality.yml)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-2563eb?logo=python&logoColor=white)](pyproject.toml)
 
-Start a command with ax, close the terminal, then come back to its output and standard input. A local daemon owns the process from the start. The same CLI can find the Claude or Codex conversation where you planned the work.
+**Close the terminal without losing the command.** ax gives long-running work a local daemon, captured output, and a way to reattach. The same CLI can find the Claude or Codex conversation where the work began and prepare a sourced handoff.
 
-**[Watch ax reattach from its Mac widget](docs/reattach.md)**. One recorded job survives the launch terminal closing and streams the remaining batches in a new terminal.
+**[Watch reattachment from AX Widget →](docs/reattach.md)** · [Install ax](#install) · [Inspect the commands](#commands-and-progress)
 
-**Try detaching a command.** After [installing ax](#install), run this small example:
+- **One process across terminals.** Detach a command, close its launch terminal, and return to its output and input later.
+- **Context next to execution.** Search prior sessions and carry the evidence for a decision into the next conversation.
+- **Local, inspectable machinery.** Unix sockets, PTYs, ordinary files, and CLI commands form the workbench; the Mac widget is a separate companion.
+
+After installing, try a short detached job:
 
 ```sh
 ax run --detach -- python3 -u -c 'import time; print("started"); time.sleep(30); print("finished")'
 ```
 
-The response includes an `id`. Run `ax attach <id>` with that value to see the output already captured and follow the rest live. For your own job, replace the Python example with the command you already use.
-
-Conversation search, sourced handoffs, shared memory, usage and budgets are also available from the CLI. Short commands complete without a model review. The daemon runs locally using Unix sockets and PTYs. Graphical clients and enforcement hooks are separate components.
+Use the returned `id` in `ax attach <id>` to replay captured output and follow the rest live. For your own job, substitute the command you already use.
 
 ## Install
 
