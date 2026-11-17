@@ -1,5 +1,8 @@
 # ax
 
+[![Quality](https://github.com/EssenceSentry/ax/actions/workflows/quality.yml/badge.svg?branch=main)](https://github.com/EssenceSentry/ax/actions/workflows/quality.yml)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-2563eb?logo=python&logoColor=white)](pyproject.toml)
+
 Start a command with ax, close the terminal, then come back to its output and standard input. A local daemon owns the process from the start. The same CLI can find the Claude or Codex conversation where you planned the work.
 
 **[Watch ax reattach from its Mac widget](docs/reattach.md)**. One recorded job survives the launch terminal closing and streams the remaining batches in a new terminal.
@@ -350,6 +353,8 @@ terminate registered work. Ax's native-message delivery is task escalation
 and explicitly subscribed usage alarms to their requesting callers.
 
 ## Development and validation
+
+GitHub Actions runs lint, formatting, tests and package builds on Python 3.12 and 3.13, with a macOS test job for the local process and terminal interfaces.
 
 ```sh
 uv sync --group dev
