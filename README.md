@@ -222,6 +222,11 @@ Projections are estimates from observed pace, require adequate observations, and
 respect allowance resets. Reported model usage/cost remains separate from
 manually recorded budget entries.
 
+`ax usage` reads the most recent provider observations. Use `ax usage --refresh`
+to update Claude's figures through its built-in, zero-inference `/usage` command.
+The daemon also checks the native installer and Homebrew locations for the Claude
+CLI when it was started by a desktop app with a limited search path.
+
 ## Usage alarms
 
 Agents can subscribe to messages when usage reaches an explicit percentage or

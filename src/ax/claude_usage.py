@@ -12,6 +12,7 @@ import datetime as dt
 import json
 import math
 import os
+import shutil
 import signal
 import subprocess
 import sys
@@ -163,6 +164,17 @@ def terminate_owned(process):
 
 
 def refresh_usage(cli, timeout):
+    # LaunchServices and launchd do not inherit the user's interactive shell PATH.
+    if cli == "claude":
+        search = os.pathsep.join(
+            [
+                os.environ.get("PATH", os.defpath),
+                str(Path.home() / ".local/bin"),
+                "/opt/homebrew/bin",
+                "/usr/local/bin",
+            ]
+        )
+        cli = shutil.which(cli, path=search) or cli
     command = [
         cli,
         "-p",

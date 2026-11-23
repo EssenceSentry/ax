@@ -398,9 +398,16 @@ def test_usage_rejects_boolean_percentages_and_unobserved_limits(config, monkeyp
     assert usage.epoch(True) is None and usage.epoch("2026-11-14T12:00:00") is None
 
 
-def test_usage_refresh_does_not_inherit_parent_agent_identity(monkeypatch):
+def test_usage_refresh_from_desktop_finds_cli_without_inheriting_agent_identity(
+    monkeypatch, tmp_path
+):
     from ax import claude_usage
 
+    monkeypatch.setenv("HOME", str(tmp_path))
+    monkeypatch.setenv("PATH", "/usr/bin:/bin")
+    binary = tmp_path / ".local/bin/claude"
+    binary.parent.mkdir(parents=True)
+    binary.touch(mode=0o700)
     for name in [
         "CLAUDECODE",
         "CLAUDE_CODE_SESSION_ID",
@@ -420,6 +427,7 @@ def test_usage_refresh_does_not_inherit_parent_agent_identity(monkeypatch):
             ), ""
 
     def popen(command, **kwargs):
+        assert command[:3] == [str(binary), "-p", "/usage"]
         captured.update(kwargs)
         return Process()
 
