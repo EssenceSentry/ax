@@ -7,7 +7,9 @@
 
 **Close the terminal without losing the command.** ax gives long-running work a local daemon, captured output, and a way to reattach. The same CLI can find the Claude or Codex conversation where the work began and prepare a sourced handoff.
 
-**[Watch reattachment from AX Widget →](docs/reattach.md)** · [Install ax](#install) · [Inspect the commands](#commands-and-progress)
+**[Watch reattachment from AX Widget](docs/reattach.md)** · [Install ax](#install) · [Inspect the commands](#commands-and-progress)
+
+ax owns the detached command and its output. [AX Widget](https://github.com/EssenceSentry/ax-widget) gives it a native Mac entry point. [Agent skills](https://github.com/EssenceSentry/agent-skills) covers session recall and handoffs.
 
 - **One process across terminals.** Detach a command, close its launch terminal, and return to its output and input later.
 - **Context next to execution.** Search prior sessions and carry the evidence for a decision into the next conversation.
